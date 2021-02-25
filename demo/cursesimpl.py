@@ -1,4 +1,6 @@
 # pip install windows-curses
+import sys
+sys.path.insert(0,'..')
 from main import Board, Directions
 import curses
 
@@ -51,6 +53,7 @@ if __name__ == "__main__":
     except AttributeError: input("You can't open it from IDE!")
     curses.noecho()
     curses.cbreak()
+    curses.curs_set(0)
     
     board = Board(width=BOARD_WIDTH, height=BOARD_HEIGHT)
     curses.wrapper(play)

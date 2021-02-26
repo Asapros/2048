@@ -1,6 +1,5 @@
 # pip install windows-curses
-import sys
-sys.path.insert(0,'..')
+import sys; sys.path.insert(0,'..') # Haha import hacking goes brrrrrrr
 from main import Board, Directions
 import curses
 
@@ -29,7 +28,7 @@ def play(screen):
         boardstate = board.visualize(border=SHOW_BORDER, fixsize=FIX_CELL_SIZE)
         
         try: screen.addstr(boardstate)
-        except:
+        except: # One reason of any error happening here is that curses can't move cursor further
             print("Your screen is too small!")
             return
         
@@ -50,12 +49,12 @@ def play(screen):
         
 if __name__ == "__main__":
     try: curses.initscr()
-    except AttributeError: input("You can't open it from IDE!")
+    except AttributeError: input("You can't open it from IDE!") # AttributeError is raised when opening in editor, I don't really know why, either way there is no point of playing in IDE cause cursor movement is not working there anyway.
     curses.noecho()
     curses.cbreak()
     curses.curs_set(0)
     
-    board = Board(width=BOARD_WIDTH, height=BOARD_HEIGHT)
+    board = Board(width=BOARD_WIDTH, height=BOARD_HEIGHT) # Initalizes the board, see more info in main.py
     curses.wrapper(play)
     
     curses.endwin()
